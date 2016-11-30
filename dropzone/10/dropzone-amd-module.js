@@ -224,11 +224,11 @@ Emitter.prototype.hasListeners = function(event){
       maxThumbnailFilesize: 10,
       thumbnailWidth: 100,
       thumbnailHeight: 100,
-      maxFiles: 50,
+      maxFiles: 10,
       params: {},
       clickable: true,
       ignoreHiddenFiles: true,
-      acceptedFiles: null,
+      acceptedFiles: ".png,.jpg, .pdf, .doc, .docx",
       acceptedMimeTypes: null,
       autoProcessQueue: true,
       addRemoveLinks: false,
@@ -590,11 +590,11 @@ Emitter.prototype.hasListeners = function(event){
           if ((_this.options.maxFiles == null) || _this.options.maxFiles > 1) {
             _this.hiddenFileInput.setAttribute("multiple", "multiple");
           }
-          // if (_this.options.acceptedFiles != null) {
-          //   _this.hiddenFileInput.setAttribute("accept", _this.options.acceptedFiles);
-          // }
+          if (_this.options.acceptedFiles != null) {
+            _this.hiddenFileInput.setAttribute("accept", _this.options.acceptedFiles);
+          }
 
-          _this.hiddenFileInput.setAttribute("accept", "image/*");
+          // _this.hiddenFileInput.setAttribute("accept", "PDF/*.PDF");
           _this.hiddenFileInput.setAttribute("capture", "camera");
           _this.hiddenFileInput.style.visibility = "hidden";
           _this.hiddenFileInput.style.position = "absolute";

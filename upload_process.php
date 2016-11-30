@@ -1,4 +1,5 @@
 <?php
+
 class Uploads {
     
     public static $file_count = 1;
@@ -18,7 +19,7 @@ class Uploads {
     public static $password = "ABC12abc";
     public static $database = "kpadb_cdgdb";
 
-    public static $root_folder = "D:/KPA-Project";
+    public static $root_folder = "D:/KPA-Project/Contracts";
 
     public function checkpoint($path, $filename, $reference)
     {
@@ -65,31 +66,33 @@ class Uploads {
     if (!empty($_FILES)) {
 
         $tempFile = $_FILES['file']['tmp_name'];
+
         $filename = $_FILES['file']['name'];
 
-
-        $f_info = finfo_open(FILEINFO_MIME_TYPE);
-        $mime = finfo_file($f_info, $tempFile);
-        $ok = true;
-        switch ($mime) {
-            case 'application/pdf':
-                break;
-            case 'image/png':
-                break;
-            case 'image/jpg':
-                break;
-            default:
-                $ok = false;
-                break;
-        }
-
-        if(!$ok) {
-            echo "Invalid application/image mime.";
-            return;
-        }
+//        $f_info = finfo_open(FILEINFO_MIME_TYPE);
+//
+//        $mime = finfo_file($f_info, $tempFile);
+//
+//        $ok = true;
+//
+//        switch ($mime) {
+//            case 'application/pdf':
+//                break;
+//            case 'image/png':
+//                break;
+//            case 'image/jpg':
+//                break;
+//            default:
+//                $ok = false;
+//                break;
+//        }
+//
+//        if(!$ok) {
+//            echo "Invalid application/image mime.";
+//            return;
+//        }
 
         $dir_name = $trans;
-
         $root_path = $upload::$root_folder ."/". $dir_name ."/".  $upload::$original;
         $newFilename = $upload->checkpoint($root_path, $filename, $trans);
 
@@ -101,7 +104,7 @@ class Uploads {
 
     }
 
-?> 
+?>
 
 
 
