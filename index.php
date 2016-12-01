@@ -98,7 +98,7 @@
    <div class="main">
       <div class="right-pane">
          <script>
-            var trans_num = "http://192.168.20.6:8004/kpa/work/transaction/generate/pdf/<?php echo $trans; ?>";
+            var trans_num = "http://localhost/kpa/work/transaction/generate/pdf/<?php echo $trans; ?>";
             $(document).ready(function() {
                $("#load_trans").attr("src", trans_num);
             })

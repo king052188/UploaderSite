@@ -4,7 +4,7 @@ class Uploads {
     
     public static $file_count = 1;
     public static $folder_name = "";
-    public static $original = "ORGL";
+    public static $original = "";
     public static $edited = "EDIT";
     public static $compressed = "COMP";
     public static $thumb = "THMB";
@@ -19,7 +19,7 @@ class Uploads {
     public static $password = "ABC12abc";
     public static $database = "kpadb_cdgdb";
 
-    public static $root_folder = "D:/KPA-Project/Contracts";
+    public static $root_folder = "Client/Contract";
 
     public function checkpoint($path, $filename, $reference)
     {
