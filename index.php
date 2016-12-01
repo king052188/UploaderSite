@@ -92,19 +92,70 @@
          border-color: #D329D8;
          color: #D329D8;
       }
+
+      ul {
+         list-style-type: none;
+         padding: 0 0 0 15px;
+      }
+      ul li {
+         padding: 3px;
+      }
+      ul li a {
+         color: #FFFFFF;
+         text-decoration: none;
+      }
+
+      ul li a:hover {
+         color: #FFFFFF;
+         padding-bottom: 2px;;
+         border-bottom: 1px solid #FFFFFF;
+      }
    </style>
 </head>
 <body>
    <div class="main">
       <div class="right-pane">
          <script>
+
             var trans_num = "http://localhost/kpa/work/transaction/generate/pdf/<?php echo $trans; ?>";
+
+            var list_of_contracts_url = "http://localhost:8004/kpa/work/scanned-contract/<?php echo $trans; ?>"
+
             $(document).ready(function() {
                $("#load_trans").attr("src", trans_num);
             })
+
             function download() {
                window.location.href =  trans_num + "/download";
             }
+
+            reload_contracts();
+
+             function reload_contracts() {
+               $(document).ready(function() {
+                  $.ajax({
+                     url: list_of_contracts_url,
+                     dataType: "text",
+                     beforeSend: function () {
+                     },
+                     success: function(data) {
+                        var json = JSON.parse(data);
+                        console.log(json);
+
+                        var li = "";
+                        $(json.contracts).each(function(i, contract){
+                           li += "<li> <a href='"+contract.img_url+"'>"+ contract.img_name +"</a></li>";
+                        })
+
+                        $("#scanned_contract").empty().prepend(li);
+
+                     }
+                  });
+               })
+            }
+
+            setInterval(reload_contracts, 1000);
+
          </script>
          <div class="dashboard">
             <h3> Dashboard </h3>
@@ -123,6 +174,14 @@
                <link href="dropzone/css/dropzone.css" type="text/css" rel="stylesheet" />
                <script src="dropzone/10/dropzone-amd-module.js"></script>
                <form action="upload_process.php?trans=<?php echo $trans; ?>" class="dropzone"></form>
+            </div>
+            <div>
+               <p>
+                  <b>Scanned Contract</b>
+               </p>
+
+               <ul id="scanned_contract"></ul>
+
             </div>
          </div>
       </div>
