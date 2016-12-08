@@ -119,7 +119,7 @@
 
             var trans_num = "http://localhost/kpa/work/transaction/generate/pdf/<?php echo $trans; ?>";
 
-            var list_of_contracts_url = "http://localhost:8004/kpa/work/scanned-contract/<?php echo $trans; ?>"
+            var list_of_contracts_url = "http://localhost/kpa/work/scanned-contract/<?php echo $trans; ?>"
 
             $(document).ready(function() {
                $("#load_trans").attr("src", trans_num);
