@@ -1,9 +1,17 @@
 <?php
-	if( !IsSet($_GET["mid"]) ) {
+	if( !IsSet($_GET["uid"]) ) {
 		echo "Error.";
 		exit();
 	}
-	$mid = $_GET["mid"];
+
+	if( !IsSet($_GET["type"]) ) {
+		echo "Error.";
+		exit();
+	}
+
+	$uid = $_GET["uid"];
+	$type = $_GET["type"];
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +23,7 @@
 <body>
 <div class="form-wrap">
 <h3>Image Uploader</h3>
-    <form action="process.php?mid=<?php echo $mid; ?>" method="post" enctype="multipart/form-data" id="upload_form">
+    <form action="process.php?type=<?php echo $type; ?>&uid=<?php echo $uid; ?>" method="post" enctype="multipart/form-data" id="upload_form">
         <input name="__files[]" type="file" multiple />
         <input name="__submit__" type="submit" value="Upload"/>
     </form>

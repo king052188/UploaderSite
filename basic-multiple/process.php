@@ -19,14 +19,15 @@
 	//specify uploaded file variable
 	$config["file_data"] = $_FILES["__files"];
 
-	$config["mag_id"] = $_GET["mid"];
+	$config["uid"] = $_GET["uid"];
+	$config["type"] = $_GET["type"];
 
-	$path_destination_folder = $config["destination_folder"] . $config["mag_id"] . '';
+	$path_destination_folder = $config["destination_folder"] . $config["type"] .'/'.  $config["uid"] . '';
 	if (!file_exists($path_destination_folder)) {
 		mkdir($path, 0777, true);
 	}
 
-	$path_thumbnail_destination_folder = $config["thumbnail_destination_folder"] . $config["mag_id"] . '';
+	$path_thumbnail_destination_folder = $config["thumbnail_destination_folder"] . $config["type"] .'/'. $config["uid"] . '';
 	if (!file_exists($path_thumbnail_destination_folder)) {
 		mkdir($path, 0777, true);
 	}
@@ -42,7 +43,7 @@
 
 	try{
 
-		$url_thumb = $config["upload_url_thumb"] . $config["mag_id"]  . '/';
+		$url_thumb = $config["upload_url_thumb"] . $config["type"] .'/'. $config["uid"]  . '/';
 		$responses = $im->resize(); //initiate image resize
 
 		echo '<h3>MAG-LOGO</h3>';
